@@ -1,12 +1,8 @@
 
----
-
-```md
 # Frontend Installation Guide
 
 This document explains how to install, configure, and run the **CRM Frontend** locally.
 
----
 
 ## Prerequisites
 
