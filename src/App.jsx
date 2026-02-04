@@ -3,6 +3,8 @@ import ProtectedRoute from "./auth/ProtectedRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Leads from "./pages/Leads";
+import Contacts from "./pages/Contacts";
+import ContactDetails from "./pages/ContactDetails";
 
 function Placeholder({ title }) {
   return <div className="p-6">{title}</div>;
@@ -28,7 +30,16 @@ export default function App() {
         path="/contacts"
         element={
           <ProtectedRoute>
-            <Placeholder title="Contacts page (next)" />
+            <Contacts />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/contacts/:id"
+        element={
+          <ProtectedRoute>
+            <ContactDetails />
           </ProtectedRoute>
         }
       />
