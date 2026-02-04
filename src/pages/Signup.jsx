@@ -1,0 +1,85 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext";
+import Input from "../components/Input";
+import Button from "../components/Button";
+
+export default function Signup() {
+  const { signup } = useAuth();
+  const nav = useNavigate();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    setError("");
+    setSubmitting(true);
+
+    try {
+      await signup(name, email, password);
+      nav("/leads");
+    } catch (err) {
+      setError(err.message || "Signup failed");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <div className="mx-auto max-w-md px-4 py-10">
+      <div className="rounded-2xl border bg-white p-6 shadow-sm">
+        <h1 className="text-2xl font-semibold">Create account</h1>
+        <p className="mt-1 text-sm text-gray-600">Start using your CRM in seconds.</p>
+
+        {error && (
+          <div className="mt-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
+
+        <form className="mt-6 space-y-4" onSubmit={onSubmit}>
+          <Input
+            label="Name"
+            type="text"
+            placeholder="Your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Input
+            label="Email"
+            type="email"
+            placeholder="you@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
+            required
+          />
+          <Input
+            label="Password"
+            type="password"
+            placeholder="min 6 characters"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="new-password"
+            required
+          />
+
+          <Button disabled={submitting} className="w-full">
+            {submitting ? "Creating..." : "Sign up"}
+          </Button>
+        </form>
+
+        <p className="mt-4 text-sm text-gray-600">
+          Already have an account?{" "}
+          <Link to="/login" className="font-medium text-black hover:underline">
+            Login
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}
