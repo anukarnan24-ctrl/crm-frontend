@@ -2,8 +2,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Leads from "./pages/Leads";
 
-// temp placeholders until we build them
 function Placeholder({ title }) {
   return <div className="p-6">{title}</div>;
 }
@@ -19,7 +19,16 @@ export default function App() {
         path="/leads"
         element={
           <ProtectedRoute>
-            <Placeholder title="Leads page (next)" />
+            <Leads />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/contacts"
+        element={
+          <ProtectedRoute>
+            <Placeholder title="Contacts page (next)" />
           </ProtectedRoute>
         }
       />

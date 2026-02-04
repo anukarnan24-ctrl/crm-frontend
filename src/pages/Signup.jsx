@@ -30,8 +30,8 @@ export default function Signup() {
   }
 
   return (
-    <div className="mx-auto max-w-md px-4 py-10">
-      <div className="rounded-2xl border bg-white p-6 shadow-sm">
+     <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="w-full max-w-md rounded-2xl border bg-white p-6 shadow-sm">
         <h1 className="text-2xl font-semibold">Create account</h1>
         <p className="mt-1 text-sm text-gray-600">Start using your CRM in seconds.</p>
 

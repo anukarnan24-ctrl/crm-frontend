@@ -13,14 +13,16 @@ export default function Navbar() {
         </Link>
 
         {user ? (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <Link className="text-sm hover:underline" to="/leads">
               Leads
             </Link>
             <Link className="text-sm hover:underline" to="/contacts">
               Contacts
             </Link>
-            <span className="text-sm text-gray-600">{user.email}</span>
+
+            <span className="text-sm text-gray-600 hidden sm:inline">{user.email}</span>
+
             <button
               className="text-sm px-3 py-1 rounded border hover:bg-gray-50"
               onClick={() => {
